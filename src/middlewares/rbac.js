@@ -3,30 +3,30 @@ const AccessModel = require("../models/access");
 const validation = require("./validation");
 const access = new AccessModel();
 
- function rbac(menuParam, accessParam) {
+function rbac(menuParam, accessParam) {
   return async (req, res, next) => {
     const roleId = req.user.roleId;
-    if (roleId === 1) next();
-    
+
+    if (roleId === 1) return next();
     const accessByRole = await access.getOne({
       where: {
-        role_id: roleId,
+        roleId: roleId,
         grant: {
-         path: [accessParam],
-         equals: true,
+          path: [accessParam],
+          equals: true,
         },
         menu: {
           is: {
             name: menuParam,
           },
+        },
       },
-    },
     });
+    console.log(roleId);
     console.log(accessByRole);
     if (!accessByRole) return next(new ValidationError("Forbidden"));
     return next();
   };
 }
 
-
-module.exports = rbac
+module.exports = rbac;
