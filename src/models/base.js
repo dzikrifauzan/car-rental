@@ -1,12 +1,14 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+
+
 // abstract class
 class BaseModel {
   //encapsulation
   constructor(model) {
     this.name = model
-    this.model = prisma[model]; //prisma.users
+    this.model = prisma[model]; prisma.users
   }
 
   get = async ({ where = {}, q = {}, select = this.select }) => {

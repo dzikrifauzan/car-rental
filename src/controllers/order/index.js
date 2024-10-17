@@ -88,7 +88,6 @@ class OrderController extends BaseController {
         }),
         cars.update(req.body.car_id, { isAvailable: false }),
       ]);
-
       return res.status(200).json(
         this.apiSend({
           code: 200,
@@ -101,7 +100,6 @@ class OrderController extends BaseController {
       return next(error);
     }
   };
-
   payment = async (req, res, next) => {
     const { id } = req.params;
     try {

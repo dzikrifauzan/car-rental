@@ -16,7 +16,6 @@ function validation(schema){
           return {path, type, message}
         })
         console.log(errMap)
-        // eslint-disable-next-line no-undef
         next(new ValidationError(errMap))
       }
     }

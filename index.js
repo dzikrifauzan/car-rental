@@ -1,4 +1,6 @@
-require('dotenv').config()
+const envPath = process.env.NODE_ENV === 'development'?
+  '.env':`.env.${process.env.NODE_ENV}`;
+require('dotenv').config({ path: envPath });
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -13,24 +15,26 @@ const { PORT = 3000 } = process.env;
 // untuk meregistrasi global variable untuk error handling
 require("./src/helpers/errors");
 
-app.use(cors())
+app.use(cors());
 app.use(express.json());
 
 app.use("/public", express.static(path.resolve(__dirname, "public")));
 
 app.get('/', async (req, res) => {
-  res.status(200).send('Car Rental API')
-})
+  res.status(200).send('Car Rental API');
+});
 
-app.use('/api/v1', routes)
+app.use('/api/v1', routes);
 
 //application level middleware untuk error handling
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.use((req, res, next) => {
   next(new NotFoundError(null, "Sorry, page not found!"));
-})
-
-app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`);
 });
+
+const server = app.listen(PORT, () => {
+  console.log(`Server jalan di port http://localhost:${PORT}`);
+});
+
+module.exports = server;

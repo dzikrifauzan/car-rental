@@ -22,8 +22,8 @@ function generateHeader(doc) {
     // .text("TMMIN Car Rental.", 110, 57)
     .fontSize(10)
     .text("TMMIN Car Rental.", 200, 50, { align: "right" })
-    .text("123 Main Street", 200, 65, { align: "right" })
-    .text("New York, NY, 10025", 200, 80, { align: "right" })
+    .text("Jl. Yos Sudarso No.10", 200, 65, { align: "right" })
+    .text("Jakarta Utara, Daerah Khusus Ibukota Jakarta 14330", 200, 80, { align: "right" })
     .moveDown();
 }
 
