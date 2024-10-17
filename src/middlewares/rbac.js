@@ -10,7 +10,7 @@ function rbac(menuParam, accessParam) {
     if (roleId === 1) return next();
     const accessByRole = await access.getOne({
       where: {
-        roleId: roleId,
+        role_id: roleId,
         grant: {
           path: [accessParam],
           equals: true,
